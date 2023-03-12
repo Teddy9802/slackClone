@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { UsersService } from './users/users.service';
 
 // 요청, 응답은 모른다.
 @Injectable()
 export class AppService {
-  constructor(private readonly configService: ConfigService) {}
+  constructor(private readonly usersService: UsersService) {}
 
   async getHello() {
-    return this.configService.get('SECRET');
+    this.usersService.getUser();
+    return process.env.SECRET;
   }
 }
